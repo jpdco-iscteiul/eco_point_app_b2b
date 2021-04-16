@@ -32,10 +32,6 @@ dependencies:
   parse_server_sdk: ^2.1.0
   flutter_signin_button: ^1.1.0
   font_awesome_flutter: ^8.4.0
-  http: ^0.12.1
-  qr_flutter: ^3.0.1
-  barcode_scan: ^3.0.1
-  path_provider: 1.6.10
 
 
 dev_dependencies:
