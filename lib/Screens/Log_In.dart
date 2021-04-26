@@ -3,6 +3,7 @@
 import 'package:eco_point_app_b2b/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:parse_server_sdk/parse_server_sdk.dart';
 
 class Log_In extends StatefulWidget{
   @override
@@ -26,7 +27,9 @@ class Log_In_state extends State<Log_In>{
         child: Column(
           children: [
             Image.asset(
-              'assets/images/Logo_s_texto.png',
+              'assets/images/Logo_wtext.png',
+              width: 500,
+              height: 240,
               fit: BoxFit.cover,
             ),
             Text(
@@ -85,7 +88,7 @@ class Log_In_state extends State<Log_In>{
                   borderRadius: BorderRadius.circular(18),
                 ),
                 onPressed: () {
-                  //LogIn();
+                  LogIn();
                 },
                 child: Text(
                   "Log In",
@@ -98,5 +101,58 @@ class Log_In_state extends State<Log_In>{
       ),
     );
   }
+
+  void LogIn() async{
+    final username = controlUsername.text.trim();
+    final password = controlPassword.text.trim();
+
+    final user = ParseUser.createUser(username,password);
+    var response = await user.login();
+
+    if(response.success){
+      ParseUser useraux = await ParseUser.currentUser();
+
+      print(useraux.objectId);
+
+      final Map<String, String> params = {
+        "id":useraux.objectId,
+      };
+
+      var result = await ParseCloudFunction("VerifyB2B").execute(parameters: params);
+
+      if(result.success)
+        showError("i did it");
+      else{
+        showError(result.error.message);
+        user.logout();
+      }
+
+
+    }
+    else{
+      showError(response.error.message);
+    }
+  }
+
+  void showError(String errorMessage) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Error!"),
+          content: Text(errorMessage),
+          actions: <Widget>[
+            new FlatButton(
+              child: const Text("OK"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
 
 }
