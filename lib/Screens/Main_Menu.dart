@@ -2,6 +2,8 @@ import 'package:eco_point_app_b2b/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'Log_In.dart';
+
 class Main_Menu extends StatefulWidget{
   @override
   State<StatefulWidget> createState() => _main_menu_state();
@@ -20,6 +22,9 @@ class _main_menu_state extends State<Main_Menu>{
         child: Column(
           children: [
             Image.asset('assets/images/Logo_wtext.png'),
+            SizedBox(   //Use of SizedBox
+              height: 80,
+            ),
             Container(
               width: size.width*8/10,
               margin: EdgeInsets.only(top: 15, bottom: 15),
@@ -28,6 +33,7 @@ class _main_menu_state extends State<Main_Menu>{
                 color: kPrimaryColor,
                 borderRadius: BorderRadius.circular(10)
               ),
+
               child: Align(
                 alignment: Alignment.center,
                 child: Text(
@@ -42,47 +48,29 @@ class _main_menu_state extends State<Main_Menu>{
               ),
             ),
 
-            Expanded(
-                child: SizedBox(
-                  height: (size.width*3/10)+10,
-                  child: GridView.count(
-                    primary: false,
-                    crossAxisSpacing: 10,
-                    crossAxisCount: 2,
-                    children: [
-                      Container(
-                        width: size.width*3/10,
-                        height: size.width*3/10,
-                        decoration: BoxDecoration(
-                          color: kContrastMediumColor,
-                        ),
-                      ),
-                      Container(
-                        width: size.width*3/10,
-                        height: size.width*3/10,
-                        decoration: BoxDecoration(
-                          color: kContrastMediumColor,
-                        ),
-                      ),
-                      Container(
-                        width: size.width*3/10,
-                        height: size.width*3/10,
-                        margin: EdgeInsets.only(top: 10),
-                        decoration: BoxDecoration(
-                          color: kContrastMediumColor,
-                        ),
-                      ),
-                      Container(
-                        width: size.width*3/10,
-                        height: size.width*3/10,
-                        margin: EdgeInsets.only(top: 10),
-                        decoration: BoxDecoration(
-                          color: kContrastMediumColor,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+            SizedBox(   //Use of SizedBox
+              height: 100,
+            ),
+
+            FlatButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Log_In()),);
+              },
+              child: Text('Create a voucher'),
+              minWidth: size.width,
+              shape: StadiumBorder(),
+              color: Color(0xFFE0E0E0),
+              textColor: Colors.black,
+            ),
+            FlatButton(
+              onPressed: () {},
+              child: Text('Create a voucher'),
+              minWidth: size.width,
+              shape: StadiumBorder(),
+              color: Color(0xFFE0E0E0),
+              textColor: Colors.black,
             ),
           ],
         ),
