@@ -125,7 +125,7 @@ class create_voucherState extends State<create_voucher> {
                   Align(
                     alignment: Alignment.center,
                     child: Container(
-                      width: 140,
+                        width: 140,
                         height:140,
                         child: Image.asset('assets/images/Logo_wtext.png')),
                   ),
