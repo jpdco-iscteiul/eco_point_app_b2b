@@ -1,3 +1,5 @@
+import 'package:eco_point_app_b2b/Screens/create_voucher.dart';
+import 'package:eco_point_app_b2b/Screens/statistics.dart';
 import 'package:eco_point_app_b2b/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -52,30 +54,38 @@ class _main_menu_state extends State<Main_Menu>{
               height: 100,
             ),
 
-            FlatButton(
+            TextButton(
+              child: Text('Create voucher'),
+              style: TextButton.styleFrom(
+                primary: Colors.white,
+                backgroundColor: Colors.teal,
+                onSurface: Colors.grey,
+              ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => create_voucher()),
+                  );
+                }
+            ),
+            TextButton(
+              child: Text('View Statistics'),
+              style: TextButton.styleFrom(
+                primary: Colors.white,
+                backgroundColor: Colors.teal,
+                onSurface: Colors.grey,
+              ),
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Log_In()),);
+                  MaterialPageRoute(builder: (context) => statistics()),
+                );
               },
-              child: Text('Create a voucher'),
-              minWidth: size.width,
-              shape: StadiumBorder(),
-              color: Color(0xFFE0E0E0),
-              textColor: Colors.black,
-            ),
-            FlatButton(
-              onPressed: () {},
-              child: Text('Create a voucher'),
-              minWidth: size.width,
-              shape: StadiumBorder(),
-              color: Color(0xFFE0E0E0),
-              textColor: Colors.black,
-            ),
+            )
           ],
         ),
       ),
     );
   }
-
+  //ALTERAÇÕESSSSSSS
 }
