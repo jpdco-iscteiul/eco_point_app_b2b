@@ -81,9 +81,9 @@ class statisticsState extends State<statistics> {
                      // animationDuration: Duration(milliseconds: 800),
                       chartLegendSpacing: 10,
                       chartRadius: 130,
-                      colorList: [Color(0xFFBF360C), Color(0xFF8BC34A)],
                       initialAngleInDegree: 0,
                       chartType: ChartType.disc,
+                      colorList: [Color(0xFFBF360C), Color(0xFF8BC34A)],
 
                       legendOptions: LegendOptions(
                         showLegendsInRow: false,
@@ -96,7 +96,7 @@ class statisticsState extends State<statistics> {
                       ),
 
                       chartValuesOptions: ChartValuesOptions(
-                        showChartValueBackground: true,
+                        showChartValueBackground: false,
                         showChartValues: true,
                         showChartValuesInPercentage: true,
                         showChartValuesOutside: true,
