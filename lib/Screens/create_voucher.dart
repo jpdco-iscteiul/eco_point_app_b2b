@@ -145,7 +145,7 @@ class create_voucherState extends State<create_voucher> {
       "data": date.text.trim(),
       "descricao": description.text.trim(),
       "pontos": points.text.trim(),
-      "id": userId,
+      "id": marca,
     };
     var result = await ParseCloudFunction("submit_voucher").execute(parameters: params);
     if(result.success){
