@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pie_chart/pie_chart.dart';
+
 //import 'package:pie_chart/pie_chart.dart';
 
 // Define a custom Form widget.
@@ -48,17 +49,15 @@ class statisticsState extends State<statistics> {
                         fontFamily: "Roboto"),
                   ),
                   SizedBox(
-                    height: 30,
+                    height: 50,
                   ),
                   Container(
-                    padding: EdgeInsets.only(
-                        bottom: 20, top: 20, left: 80, right: 80),
+                    padding: EdgeInsets.only(bottom: 20, top: 20, left: 40, right: 40),
                     child: Column(
                       children: <Widget>[
                         TextButton(
                             style: TextButton.styleFrom(
-                              padding: EdgeInsets.only(
-                                  bottom: 20, top: 20, left: 50, right: 50),
+                              padding: EdgeInsets.only(bottom: 20, top: 20, left: 40, right: 40),
                               primary: Colors.blueGrey,
                               backgroundColor: Colors.green[400],
                               onSurface: Colors.grey,
@@ -72,7 +71,7 @@ class statisticsState extends State<statistics> {
                     ),
                   ),
                   SizedBox(
-                    height:30,
+                    height:40,
                   ),
                   Container(
                     // padding: EdgeInsets.all(20),
@@ -102,6 +101,29 @@ class statisticsState extends State<statistics> {
                         showChartValuesOutside: true,
                         decimalPlaces: 1,
                       ),
+                    ),
+                  ),
+                  SizedBox(
+                    height:40,
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(
+                        bottom: 20, top: 20, left: 80, right: 80),
+                    child: Column(
+                      children: <Widget>[
+                        TextButton(
+                            style: TextButton.styleFrom(
+                              padding: EdgeInsets.only(bottom: 20, top: 20, left: 40, right: 40),
+                              primary: Colors.blueGrey,
+                              backgroundColor: Colors.green[400],
+                              onSurface: Colors.grey,
+                            ),
+                            child: Text('Percentagem de conversão'),
+                            onPressed: () {
+                              popUpPercentage();
+                            }),
+
+                      ],
                     ),
                   ),
                 ],
@@ -138,4 +160,31 @@ class statisticsState extends State<statistics> {
       },
     );
   }
+
+  void popUpPercentage() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("A percentagem de conversão de vouchers foi:"),
+          content: Container(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  "10%",
+                  style: TextStyle(
+                      fontSize: 30,
+                      color: Colors.blueGrey,
+                      fontWeight: FontWeight.w700,
+                      fontFamily: "Roboto"),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
 }
