@@ -111,6 +111,7 @@ class create_voucherState extends State<create_voucher> {
                             ),
                             onPressed: () {
                               submit_Form_Data();
+                              popUpMessage();
                             }),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -126,7 +127,7 @@ class create_voucherState extends State<create_voucher> {
                     alignment: Alignment.center,
                     child: Container(
                         width: 140,
-                        height:140,
+                        height: 140,
                         child: Image.asset('assets/images/Logo_wtext.png')),
                   ),
                 ],
@@ -147,11 +148,34 @@ class create_voucherState extends State<create_voucher> {
       "pontos": points.text.trim(),
       "id": marca,
     };
-    var result = await ParseCloudFunction("submit_voucher").execute(parameters: params);
-    if(result.success){
+    var result = await ParseCloudFunction("submit_voucher").execute(
+        parameters: params);
+    if (result.success) {
       print("Success");
-    }else{
+    } else {
       print("Failed");
     }
+  }
+
+  void popUpMessage() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // retorna um objeto do tipo Dialog
+        return AlertDialog(
+          title: new Text("Sucesso"),
+          content: new Text("Voucher criado com sucesso!"),
+          actions: <Widget>[
+            // define os botões na base do dialogo
+            new FlatButton(
+              child: new Text("Fechar"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 }
