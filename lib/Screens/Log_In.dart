@@ -127,9 +127,9 @@ class Log_In_state extends State<Log_In>{
 
       if(result.success) {
         userId = useraux.objectId;
-       /* var result2 = await ParseCloudFunction("getMarca").execute(parameters: params);
-        marca = result2.result;
-        print(marca);*/
+       var result2 = await ParseCloudFunction("getMarca").execute(parameters: params);
+        marca = result2.result.toString();
+        print(marca);
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => Main_Menu())
