@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:parse_server_sdk/parse_server_sdk.dart';
+
+import '../constants.dart';
 
 // Define a custom Form widget.
 class create_voucher extends StatefulWidget {
-
   @override
   create_voucherState createState() {
     return create_voucherState();
@@ -22,7 +24,7 @@ class create_voucherState extends State<create_voucher> {
   TextEditingController description = new TextEditingController();
   TextEditingController value = new TextEditingController();
   TextEditingController date = new TextEditingController();
-
+  TextEditingController points = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +51,7 @@ class create_voucherState extends State<create_voucher> {
                   ),
                   SizedBox(
                     //Use of SizedBox
-                    height: 50,
+                    height: 60,
                   ),
                   Container(
                     decoration: BoxDecoration(
@@ -80,6 +82,15 @@ class create_voucherState extends State<create_voucher> {
                           ),
                         ),
                         new ListTile(
+                          leading: const Icon(CupertinoIcons.circle_grid_hex),
+                          title: new TextField(
+                            controller: points,
+                            decoration: new InputDecoration(
+                              hintText: "Pontos necessários",
+                            ),
+                          ),
+                        ),
+                        new ListTile(
                           leading: const Icon(CupertinoIcons.calendar),
                           title: new TextField(
                             controller: date,
@@ -98,12 +109,9 @@ class create_voucherState extends State<create_voucher> {
                               backgroundColor: Colors.tealAccent[400],
                               onSurface: Colors.grey,
                             ),
-                            onPressed: (
-                                //chamar função
-                                ) {
-
-                            }
-                        ),
+                            onPressed: () {
+                              submit_Form_Data();
+                            }),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                         ),
@@ -112,14 +120,15 @@ class create_voucherState extends State<create_voucher> {
                   ),
                   SizedBox(
                     //Use of SizedBox
-                    height: 30,
+                    height: 20,
                   ),
                   Align(
                     alignment: Alignment.center,
                     child: Container(
+                      width: 140,
+                        height:140,
                         child: Image.asset('assets/images/Logo_wtext.png')),
                   ),
-
                 ],
               ),
             ),
@@ -127,5 +136,22 @@ class create_voucherState extends State<create_voucher> {
         ],
       ),
     );
+  }
+
+  void submit_Form_Data() async {
+    //FALTA ID
+    final Map<String, String> params = {
+      "valor": value.text.trim(),
+      "data": date.text.trim(),
+      "descricao": description.text.trim(),
+      "pontos": points.text.trim(),
+      "id": userId,
+    };
+    var result = await ParseCloudFunction("submit_voucher").execute(parameters: params);
+    if(result.success){
+      print("Success");
+    }else{
+      print("Failed");
+    }
   }
 }
