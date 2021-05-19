@@ -42,10 +42,10 @@ class create_voucherState extends State<create_voucher> {
                     height: 50,
                   ),
                   Text(
-                    "Create your vouchers here",
+                    "Crie o seu Voucher",
                     style: TextStyle(
                         fontSize: 25,
-                        color: Colors.blueGrey,
+                        color: kContrastColor,
                         fontWeight: FontWeight.w700,
                         fontFamily: "Roboto"),
                   ),
@@ -103,15 +103,15 @@ class create_voucherState extends State<create_voucher> {
                           padding: const EdgeInsets.all(8.0),
                         ),
                         TextButton(
-                            child: Text('Submit voucher'),
+                            child: Text('Submeter voucher'),
                             style: TextButton.styleFrom(
-                              primary: Colors.blueGrey,
-                              backgroundColor: Colors.tealAccent[400],
-                              onSurface: Colors.grey,
+                              primary: kContrastLighterColor,
+                              backgroundColor: kPrimaryColor,
+                              onSurface: kPrimaryColor,
                             ),
                             onPressed: () {
                               submit_Form_Data();
-                              popUpMessage();
+
                             }),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -150,21 +150,29 @@ class create_voucherState extends State<create_voucher> {
     };
     var result = await ParseCloudFunction("submit_voucher").execute(
         parameters: params);
-    if (result.success) {
-      print("Success");
+    if (result.success && validForm()) {
+      popUpMessage("Voucher criado com sucesso");
     } else {
-      print("Failed");
+      popUpMessage("Erro");
     }
   }
 
-  void popUpMessage() {
+  bool validForm(){
+    print(value.text.isEmpty || date.text.isEmpty || description.text.isEmpty || points.text.isEmpty);
+    if(value.text.isEmpty || date.text.isEmpty || description.text.isEmpty || points.text.isEmpty)
+      return false;
+    else
+      return true;
+  }
+
+  void popUpMessage(String text) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         // retorna um objeto do tipo Dialog
         return AlertDialog(
-          title: new Text("Sucesso"),
-          content: new Text("Voucher criado com sucesso!"),
+          title: new Text(text),
+          content: new Text(text),
           actions: <Widget>[
             // define os botões na base do dialogo
             new FlatButton(

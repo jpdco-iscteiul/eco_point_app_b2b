@@ -51,10 +51,10 @@ class statisticsState extends State<statistics> {
                     height: 30,
                   ),
                   Text(
-                    "Partner statistics",
+                    "Estatisticas",
                     style: TextStyle(
                         fontSize: 40,
-                        color: Colors.blueGrey,
+                        color: kContrastColor,
                         fontWeight: FontWeight.w700,
                         fontFamily: "Roboto"),
                   ),
@@ -70,11 +70,11 @@ class statisticsState extends State<statistics> {
                             style: TextButton.styleFrom(
                               padding: EdgeInsets.only(
                                   bottom: 20, top: 20, left: 40, right: 40),
-                              primary: Colors.blueGrey,
-                              backgroundColor: Colors.green[400],
+                              primary: kContrastLighterColor,
+                              backgroundColor: kPrimaryColor,
                               onSurface: Colors.grey,
                             ),
-                            child: Text('Valor mais requisitado'),
+                            child: Text('Valor médio requisitado'),
                             onPressed: () {
                               popUp();
                             }),
@@ -107,7 +107,7 @@ class statisticsState extends State<statistics> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("O voucher mais requisitado foi de:"),
+          title: Text("Em média os utilizadores procuram vouchers de valor:"),
           content: Container(
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -126,10 +126,10 @@ class statisticsState extends State<statistics> {
       return CircularProgressIndicator();
     } else {
      return Text(
-        mean.toString(),
+        mean.toString()+"€",
         style: TextStyle(
             fontSize: 30,
-            color: Colors.blueGrey,
+            color: kPrimaryColor,
             fontWeight: FontWeight.w700,
             fontFamily: "Roboto"),
       );
@@ -147,7 +147,7 @@ class statisticsState extends State<statistics> {
         chartRadius: 130,
         initialAngleInDegree: 0,
         chartType: ChartType.disc,
-        colorList: [Color(0xFFBF360C), Color(0xFF8BC34A)],
+        colorList: [kContrastMediumColor, kPrimaryLightColor],
 
         legendOptions: LegendOptions(
           showLegendsInRow: false,

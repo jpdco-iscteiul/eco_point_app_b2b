@@ -23,13 +23,14 @@ class _main_menu_state extends State<Main_Menu>{
         padding: EdgeInsets.all(25),
         child: Column(
           children: [
-            Image.asset('assets/images/Logo_wtext.png'),
             SizedBox(   //Use of SizedBox
-              height: 80,
+              height: 50,
             ),
+            Image.asset('assets/images/Logo_wtext.png'),
+
             Container(
               width: size.width*8/10,
-              margin: EdgeInsets.only(top: 15, bottom: 15),
+              margin: EdgeInsets.only(top: 25, bottom: 15),
               padding: EdgeInsets.all(15),
               decoration: BoxDecoration(
                 color: kPrimaryColor,
@@ -49,39 +50,49 @@ class _main_menu_state extends State<Main_Menu>{
                 ),
               ),
             ),
-
+/*
             SizedBox(   //Use of SizedBox
               height: 100,
-            ),
+            ),*/
+            Container(
+              width: size.width*7/10,
+              margin: EdgeInsets.all(15),
+              child: TextButton(
+                  child: Text('Criar Voucher', textScaleFactor: 1.5,),
+                  style: TextButton.styleFrom(
+                    primary: Colors.white,
+                    backgroundColor: kContrastMediumColor,
+                    onSurface: Colors.grey,
 
-            TextButton(
-              child: Text('Create voucher'),
-              style: TextButton.styleFrom(
-                primary: Colors.white,
-                backgroundColor: Colors.teal,
-                onSurface: Colors.grey,
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => create_voucher()),
+                    );
+                  }
               ),
+            ),
+            Container(
+              width: size.width*7/10,
+                margin: EdgeInsets.all(15),
+              child: TextButton(
+                child: Text('Consultar Estatísticas',textScaleFactor: 1.5,),
+                style: TextButton.styleFrom(
+                  primary: Colors.white,
+                  backgroundColor: kContrastMediumColor,
+                  onSurface: Colors.grey,
+                ),
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => create_voucher()),
+                    MaterialPageRoute(builder: (context) => statistics()),
                   );
-                }
+                },
+              )
             ),
-            TextButton(
-              child: Text('View Statistics'),
-              style: TextButton.styleFrom(
-                primary: Colors.white,
-                backgroundColor: Colors.teal,
-                onSurface: Colors.grey,
-              ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => statistics()),
-                );
-              },
-            )
+
+
           ],
         ),
       ),
